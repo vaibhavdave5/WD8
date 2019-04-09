@@ -1,0 +1,16 @@
+{
+  "name": "whiteboard",
+  "version": "1.0.0",
+  "description": "WD8",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "Vaibhav",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4",
+    "express-session": "^1.15.6",
+    "mongoose": "^5.5.0"
+  }
+}
