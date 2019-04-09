@@ -1,7 +1,7 @@
-const studentDao = require('../dao/student.dao.server')()
+const universityDao = require('../data/daos/university.dao.server')
 module.exports = app => {
-    const createStudent = (req, res) =>
-    res.json(studentDao.createStudent(req.body))
+    createStudent = (req, res) =>
+    res.json(universityDao.createStudent(req.body))
 
   app.post('/api/student/', createStudent)
 }

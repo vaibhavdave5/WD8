@@ -27,7 +27,9 @@ require('./data/db')()
 // enrollmentDao.studentEnrollments('5bf34e0a0eada8ea44044b05')
 //   .then(e => console.log(e))
 
-require('./services/session.service.server')(app)
+//require('./services/session.service.server')(app)
+
+const universityDao = require('./data/daos/university.dao.server')
 
 const universityService = require('./services/university.services.server')
 universityService(app)
