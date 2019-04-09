@@ -1,7 +1,9 @@
 const mongoose = require('mongoose')
 const TrueFalseSchema = require('./true-false.schema.server.js')
 const MultipleChoiceSchema = require('./multiple-choice.schema.server.js')
-modules.exports = mongoose.Schema({
+
+
+const questionSchema = mongoose.Schema({
  _id: Number,
  question: String,
  points: Number,
@@ -9,3 +11,5 @@ modules.exports = mongoose.Schema({
  multipleChoice: MultipleChoiceSchema,
  trueFalse: TrueFalseSchema
 }, {collection: 'questions'})
+
+module.exports = questionSchema;
