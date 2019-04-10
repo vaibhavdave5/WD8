@@ -8,7 +8,11 @@ const createQuestion = (question) =>{
 
 const answerQuestion  = (studentId, questionId, answer) => {
     answerModel.create(answer)
-} 
+}
+
+const answerQuestion2  = (answer) => {
+    answerModel.create(answer)
+}
 
 const createStudent = student =>
   studentModel.create(student)
@@ -61,7 +65,8 @@ module.exports = {
     updateStudent,
     deleteStudent,
     createQuestion,
-    answerQuestion
+    answerQuestion,
+    answerQuestion2
   }
   
 
