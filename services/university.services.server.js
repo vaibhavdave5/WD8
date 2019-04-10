@@ -3,52 +3,99 @@ module.exports = app => {
     const createStudent = (req, res) =>
     res.json(universityDao.createStudent(req.body))
 
-    const findAllStudents = (req, res) =>
-    res.json(universityDao.findStudents())
+    const findAllStudents = (req, res) =>{
+        universityDao.findAllStudents().then((students) => {
+            if (students != null) {
+                res.statusCode = 200;
+                res.setHeader('Content-Type', 'application/json');
+                res.json(students);
+            }}
+            )
+    }
 
     const findStudentById = (req, res) => {
-        res.json(universityDao.findStudentById(req.params['id']))
+        universityDao.findStudentById(req.params['id']).then((students) => {
+            if (students != null) {
+                res.statusCode = 200;
+                res.setHeader('Content-Type', 'application/json');
+                res.json(students);
+            }})
     }
     app.get('/api/student/:id', findStudentById);
 
     const updateStudentById = (req, res) => {
-        res.json(universityDao.updateStudentById(req.params['id']))
+        universityDao.updateStudentById(req.params['id']).then((arr) => {
+            if (arr != null) {
+                res.statusCode = 200;
+                res.setHeader('Content-Type', 'application/json');
+                res.json(arr);
+            }})
     }
 
     app.put('/api/student/:id', updateStudentById)
 
     const removeStudentById = (req, res) => {
-        res.json(universityDao.removeStudentById(req.params['id']));
+        universityDao.removeStudentById(req.params['id']).then((arr) => {
+            if (arr != null) {
+                res.statusCode = 200;
+                res.setHeader('Content-Type', 'application/json');
+                res.json(arr);
+            }});
     }
 
     app.delete('/api/student/:id', removeStudentById)
 
     const createQuestion = (req, res) => {
-        res.json(universityDao.createQuestion(req.body));
+        universityDao.createQuestion(req.body).then((arr) => {
+            if (arr != null) {
+                res.statusCode = 200;
+                res.setHeader('Content-Type', 'application/json');
+                res.json(arr);
+            }});
     }
 
     app.post('/api/question', createQuestion);
 
     const getAllQuestions = (req, res) => {
-        res.json(universityDao.findAllQuestions());
+        universityDao.findAllQuestions().then((arr) => {
+            if (arr != null) {
+                res.statusCode = 200;
+                res.setHeader('Content-Type', 'application/json');
+                res.json(arr);
+            }});
     }
 
     app.get('/api/question', getAllQuestions);
 
     const getQuestionById = (req, res) => {
-        res.json(universityDao.findQuestionById(req.params['id']));
+        universityDao.findQuestionById(req.params['id']).then((arr) => {
+            if (arr != null) {
+                res.statusCode = 200;
+                res.setHeader('Content-Type', 'application/json');
+                res.json(arr);
+            }});
     }
 
     app.get('/api/question/:id', getQuestionById);
 
     const updateQuestionById = (req, res) => {
-        res.json(universityDao.updateQuestionById(req.params['id']));
+        universityDao.updateQuestionById(req.params['id']).then((arr) => {
+            if (arr != null) {
+                res.statusCode = 200;
+                res.setHeader('Content-Type', 'application/json');
+                res.json(arr);
+            }});
     }
 
     app.put('/api/question/:id', updateQuestionById)
 
     const removeQuestionById = (req, res) => {
-        res.json(universityDao.removeQuestionById(req.params['id']));
+        universityDao.removeQuestionById(req.params['id']).then((arr) => {
+            if (arr != null) {
+                res.statusCode = 200;
+                res.setHeader('Content-Type', 'application/json');
+                res.json(arr);
+            }});
     }
 
     app.delete('/api/question/:id', removeQuestionById)
