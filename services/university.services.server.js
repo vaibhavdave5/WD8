@@ -110,5 +110,38 @@ module.exports = app => {
 
   app.post('/api/student/', createStudent)
   app.get('/api/student/', findAllStudents)
+
+
+  const obj1 = {
+    _id:123,
+    username: "Alice",
+    password: "Wonderland",
+    firstName: "Alice",
+    lastName: "Alice",
+    gradYear: 2020,
+    scholarship: 15000
+}
+
+const obj2 = {
+    _id:234,
+    username: "Bob",
+    password: "Hope",
+    firstName: "bob",
+    lastName: "bob",
+    gradYear: 2021,
+    scholarship: 12000
+}
+
+  app.post('/api/populate', (req, res) => {
+     universityDao.createStudent(obj1).then((res1) =>
+        universityDao.createStudent(obj2).then((res2)=>{
+            res.statusCode = 200;
+            res.setHeader('Content-Type', 'application/json');
+            res.json(res1+res2);
+        }
+        ) 
+    )
+  })  
+
   
 }
