@@ -14,6 +14,14 @@ module.exports = {
     findAnswersByQuestion  
   }
 
+const createQuestion = (question) =>{
+    questionModel.create(question);
+} 
+
+const answerQuestion  = (studentId, questionId, answer) => {
+    answerModel.create(answer)
+} 
+
 const createStudent = student =>
   studentModel.create(student)
 
