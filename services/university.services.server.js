@@ -116,11 +116,7 @@ module.exports = app => {
     }
 
     app.get('/api/student/:sid/question/:qid/answer', getAnswersByStudentAndQuestion)
-
-// Retrieves all answers by student whose ID is sid for question whose ID is qid
-// /api/question/:qid/student/:sid/answer
-// Retrieves all answers by student whose ID is sid for question whose ID is qid (same as above)
-
+    app.get('/api/question/:qid/student/:sid/answer', getAnswersByStudentAndQuestion)
 
   app.post('/api/student/', createStudent)
   app.get('/api/student/', findAllStudents)
