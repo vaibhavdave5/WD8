@@ -11,7 +11,11 @@ module.exports = {
     findAllQuestions,
     findQuestionById,
     findAnswersByStudent,
-    findAnswersByQuestion  
+    findAnswersByQuestion,
+    updateStudent,
+    deleteStudent,
+    createQuestion,
+    answerQuestion
   }
 
 const createQuestion = (question) =>{
@@ -53,5 +57,14 @@ const findAnswersByStudent = (studentId) => {
 const findAnswersByQuestion = (questionId) =>{
     questionModel.findAnswersByQuestion(questionId);  
 } 
+
+const updateStudent = (id, student) => {
+    studentModel.update({_id: id}, {$set: student})
+}
+
+const deleteStudent = (id) => {
+    studentModel.remove({_id: id})
+}
+
   
 
