@@ -206,77 +206,89 @@ const a1 = {
     question:321,
     trueFalseAnswer:true    
 }
-// const a2 = {
-//     _id: 234,
-//     student:obj1,
-//     question:q2,
-//     trueFalseAnswer:false  
-// }
+const a2 = {
+    _id: 234,
+    student:obj1,
+    question:q2,
+    trueFalseAnswer:false  
+}
 
-// const a3 = {
-//     _id: 345,
-//     student:obj1,
-//     question:q3,
-//     multipleChoiceAnswer:1  
-// }
+const a3 = {
+    _id: 345,
+    student:obj1,
+    question:q3,
+    multipleChoiceAnswer:1  
+}
 
-// const a4 = {
-//     _id: 456,
-//     student: obj1,
-//     question: q4,
-//     multipleChoiceAnswer:2
-// }
+const a4 = {
+    _id: 456,
+    student: obj1,
+    question: q4,
+    multipleChoiceAnswer:2
+}
 
-// const a5 = {
-//     _id: 567,
-//     student:obj2,
-//     question:q1,
-//     trueFalseAnswer:false    
-// }
-// const a6 = {
-//     _id: 678,
-//     student:obj2,
-//     question:q2,
-//     trueFalseAnswer:true 
-// }
+const a5 = {
+    _id: 567,
+    student:obj2,
+    question:q1,
+    trueFalseAnswer:false    
+}
+const a6 = {
+    _id: 678,
+    student:obj2,
+    question:q2,
+    trueFalseAnswer:true 
+}
 
-// const a7 = {
-//     _id: 789,
-//     student:obj2,
-//     question:q3,
-//     multipleChoiceAnswer:3
-// }
+const a7 = {
+    _id: 789,
+    student:obj2,
+    question:q3,
+    multipleChoiceAnswer:3
+}
 
-// const a8 = {
-//     _id: 890,
-//     student: obj2,
-//     question: q4,
-//     multipleChoiceAnswer:4
-// }
+const a8 = {
+    _id: 890,
+    student: obj2,
+    question: q4,
+    multipleChoiceAnswer:4
+}
 
 app.post('/api/populate', (req, res) => {
-    //  universityDao.createStudent(obj1).then((res1) =>{
-    //         universityDao.createQuestion(q1)
-    //         universityDao.createQuestion(q2)
-    //         universityDao.createQuestion(q3)
-    //         universityDao.createQuestion(q4)
-    //     universityDao.createStudent(obj2).then((res2)=>{
-    //         res.statusCode = 200;
-    //         res.setHeader('Content-Type', 'application/json');
-    //         res.json(res1+res2);
-    //     })}
-    //     ).then((res3) => {
+     universityDao.createStudent(obj1).then((res1) =>{
+            universityDao.createQuestion(q1)
+            universityDao.createQuestion(q2)
+            universityDao.createQuestion(q3)
+            universityDao.createQuestion(q4)
+        universityDao.createStudent(obj2).then((res2)=>{
+        })}
+        ).then((res3) => {
             universityDao.answerQuestion2(a1)
-            // universityDao.answerQuestion2(a2)
-            // universityDao.answerQuestion2(a3)
-            // universityDao.answerQuestion2(a4)
-            // universityDao.answerQuestion2(a5)
-            // universityDao.answerQuestion2(a6)
-            // universityDao.answerQuestion2(a7)
-            // universityDao.answerQuestion2(a8)
-        // }) 
-    
-  })  
+            universityDao.answerQuestion2(a2)
+            universityDao.answerQuestion2(a3)
+            universityDao.answerQuestion2(a4)
+            universityDao.answerQuestion2(a5)
+            universityDao.answerQuestion2(a6)
+            universityDao.answerQuestion2(a7)
+            universityDao.answerQuestion2(a8).then((done)=> {
+                res.statusCode = 200;
+                res.setHeader('Content-Type', 'application/json');
+                res.json(done);
+            })
+        }) 
+  })
+  
+  app.delete('/api/all', (req, res)=> {
+      universityDao.removeAllAnswers().then((a) => {
+            universityDao.removeAllQuestions();
+            universityDao.removeAllStudents().then((done)=> {
+                res.statusCode = 200;
+                res.setHeader('Content-Type', 'application/json');
+                res.json(done);
+            });
+          }
+      )
+  })
 
   
 }

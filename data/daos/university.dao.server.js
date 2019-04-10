@@ -58,10 +58,24 @@ const findAnswersByStudentAndQuestion = (qid,sid) =>
     answerModel.find({student: sid, question: qid })
     .populate("student")
 
+const removeAllStudents = () => 
+    studentModel.collection.remove();
+
+
+const removeAllAnswers = () => 
+    answerModel.collection.remove();
+ 
+
+
+const removeAllQuestions = () => 
+    questionModel.collection.remove();
 
 
 
 module.exports = {
+    removeAllAnswers,
+    removeAllQuestions,
+    removeAllStudents,
     createStudent,
     findAllAnswers,
     findAllStudents,
