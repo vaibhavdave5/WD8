@@ -1,18 +1,21 @@
+var mongoose = require('mongoose');
+
 const studentModel = require('../models/student.model.server')
 const questionModel = require('../models/question.model.server')
 const answerModel = require('../models/answer.modal.server')
 
-const createQuestion = (question) =>{
+
+const createQuestion = (question) =>
     questionModel.create(question);
-} 
 
-const answerQuestion  = (studentId, questionId, answer) => {
-    answerModel.create(answer)
-}
 
-const answerQuestion2  = (answer) => {
+const answerQuestion  = (studentId, questionId, answer) => 
     answerModel.create(answer)
-}
+
+
+const answerQuestion2  = (answer) => 
+    answerModel.create(answer)
+
 
 const createStudent = student =>
   studentModel.create(student)
@@ -51,6 +54,12 @@ const updateStudent = (id, student) =>
 const deleteStudent = (id) => 
     studentModel.remove({_id: id})
 
+const findAnswersByStudentAndQuestion = (qid,sid) => 
+    answerModel.find({student: sid, question: qid })
+    .populate("student")
+
+
+
 
 module.exports = {
     createStudent,
@@ -66,7 +75,8 @@ module.exports = {
     deleteStudent,
     createQuestion,
     answerQuestion,
-    answerQuestion2
+    answerQuestion2,
+    findAnswersByStudentAndQuestion
   }
   
 

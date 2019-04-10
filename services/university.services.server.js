@@ -1,4 +1,6 @@
 const universityDao = require('../data/daos/university.dao.server')
+var mongoose = require('mongoose');
+
 module.exports = app => {
     const createStudent = (req, res) =>
     res.json(universityDao.createStudent(req.body))
@@ -102,7 +104,19 @@ module.exports = app => {
 
 // /api/student/:sid/question/:qid/answer
 // Student whose ID is sid answers question whose ID is qid
-// /api/student/:sid/question/:qid/answer
+  
+
+  const getAnswersByStudentAndQuestion = (req, res) => {
+    universityDao.findAnswersByStudentAndQuestion(req.params['qid'],req.params['sid']).then((arr) => {
+        if (arr != null) {
+            res.statusCode = 200;
+            res.setHeader('Content-Type', 'application/json');
+            res.json(arr);
+        }});
+    }
+
+    app.get('/api/student/:sid/question/:qid/answer', getAnswersByStudentAndQuestion)
+
 // Retrieves all answers by student whose ID is sid for question whose ID is qid
 // /api/question/:qid/student/:sid/answer
 // Retrieves all answers by student whose ID is sid for question whose ID is qid (same as above)
@@ -188,80 +202,80 @@ const q4 = {
 
 const a1 = {
     _id: 123,
-    student:obj1,
-    question:q1,
+    student:123,
+    question:321,
     trueFalseAnswer:true    
 }
-const a2 = {
-    _id: 234,
-    student:obj1,
-    question:q2,
-    trueFalseAnswer:false  
-}
+// const a2 = {
+//     _id: 234,
+//     student:obj1,
+//     question:q2,
+//     trueFalseAnswer:false  
+// }
 
-const a3 = {
-    _id: 345,
-    student:obj1,
-    question:q3,
-    multipleChoiceAnswer:1  
-}
+// const a3 = {
+//     _id: 345,
+//     student:obj1,
+//     question:q3,
+//     multipleChoiceAnswer:1  
+// }
 
-const a4 = {
-    _id: 456,
-    student: obj1,
-    question: q4,
-    multipleChoiceAnswer:2
-}
+// const a4 = {
+//     _id: 456,
+//     student: obj1,
+//     question: q4,
+//     multipleChoiceAnswer:2
+// }
 
-const a5 = {
-    _id: 567,
-    student:obj2,
-    question:q1,
-    trueFalseAnswer:false    
-}
-const a6 = {
-    _id: 678,
-    student:obj2,
-    question:q2,
-    trueFalseAnswer:true 
-}
+// const a5 = {
+//     _id: 567,
+//     student:obj2,
+//     question:q1,
+//     trueFalseAnswer:false    
+// }
+// const a6 = {
+//     _id: 678,
+//     student:obj2,
+//     question:q2,
+//     trueFalseAnswer:true 
+// }
 
-const a7 = {
-    _id: 789,
-    student:obj2,
-    question:q3,
-    multipleChoiceAnswer:3
-}
+// const a7 = {
+//     _id: 789,
+//     student:obj2,
+//     question:q3,
+//     multipleChoiceAnswer:3
+// }
 
-const a8 = {
-    _id: 890,
-    student: obj2,
-    question: q4,
-    multipleChoiceAnswer:4
-}
+// const a8 = {
+//     _id: 890,
+//     student: obj2,
+//     question: q4,
+//     multipleChoiceAnswer:4
+// }
 
 app.post('/api/populate', (req, res) => {
-     universityDao.createStudent(obj1).then((res1) =>
-        universityDao.createStudent(obj2).then((res2)=>{
-            res.statusCode = 200;
-            res.setHeader('Content-Type', 'application/json');
-            res.json(res1+res2);
-        }
-        ).then((res3) => {
-            universityDao.createQuestion(q1)
-            universityDao.createQuestion(q2)
-            universityDao.createQuestion(q3)
-            universityDao.createQuestion(q4)
+    //  universityDao.createStudent(obj1).then((res1) =>{
+    //         universityDao.createQuestion(q1)
+    //         universityDao.createQuestion(q2)
+    //         universityDao.createQuestion(q3)
+    //         universityDao.createQuestion(q4)
+    //     universityDao.createStudent(obj2).then((res2)=>{
+    //         res.statusCode = 200;
+    //         res.setHeader('Content-Type', 'application/json');
+    //         res.json(res1+res2);
+    //     })}
+    //     ).then((res3) => {
             universityDao.answerQuestion2(a1)
-            universityDao.answerQuestion2(a2)
-            universityDao.answerQuestion2(a3)
-            universityDao.answerQuestion2(a4)
-            universityDao.answerQuestion2(a5)
-            universityDao.answerQuestion2(a6)
-            universityDao.answerQuestion2(a7)
-            universityDao.answerQuestion2(a8)
-        }) 
-    )
+            // universityDao.answerQuestion2(a2)
+            // universityDao.answerQuestion2(a3)
+            // universityDao.answerQuestion2(a4)
+            // universityDao.answerQuestion2(a5)
+            // universityDao.answerQuestion2(a6)
+            // universityDao.answerQuestion2(a7)
+            // universityDao.answerQuestion2(a8)
+        // }) 
+    
   })  
 
   
